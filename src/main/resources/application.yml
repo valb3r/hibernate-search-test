@@ -1,0 +1,11 @@
+datasource:
+  canonical:
+    url: jdbc:sqlserver://localhost:1433;databaseName=canonical;trustServerCertificate=true
+    username: sa
+    password: 123
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+  master:
+    url: jdbc:sqlserver://localhost:1434;databaseName=master;trustServerCertificate=true
+    username: sa
+    password: 456
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
