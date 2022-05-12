@@ -7,7 +7,14 @@ datasource:
     jpa:
       properties:
         hibernate:
+          ddl-auto: validate
           dialect: org.hibernate.dialect.SQLServer2012Dialect
+      open-in-view: false
+      show-sql: true
+    liquibase:
+      change-log: classpath:/liquibase/canonical/changelog.xml
+      enabled: true
+
   master:
     url: jdbc:sqlserver://localhost:1434;databaseName=master;trustServerCertificate=true
     username: sa
@@ -16,4 +23,10 @@ datasource:
     jpa:
       properties:
         hibernate:
+          ddl-auto: validate
           dialect: org.hibernate.dialect.SQLServer2012Dialect
+      open-in-view: false
+      show-sql: true
+    liquibase:
+      change-log: classpath:/liquibase/master/changelog.xml
+      enabled: true

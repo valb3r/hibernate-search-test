@@ -1,6 +1,9 @@
 package org.example.hibernate_search_poc.config;
 
+import liquibase.integration.spring.SpringLiquibase;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
+import org.springframework.boot.autoconfigure.liquibase.LiquibaseProperties;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -32,6 +35,16 @@ public class PocDatasourceConfiguration {
     }
 
     @Bean
+    @ConfigurationProperties("datasource.master.liquibase")
+    public SpringLiquibase masterLiquibase(
+            @Qualifier("masterDataSource") DataSource masterDataSource
+    ) {
+        var liquibase = new SpringLiquibase();
+        liquibase.setDataSource(masterDataSource);
+        return liquibase;
+    }
+
+    @Bean
     @ConfigurationProperties("datasource.canonical")
     public DataSourceProperties canonicalDataSourceProperties() {
         return new DataSourceProperties();
@@ -52,4 +65,13 @@ public class PocDatasourceConfiguration {
                 .build();
     }
 
+    @Bean
+    @ConfigurationProperties("datasource.canonical.liquibase")
+    public SpringLiquibase canonicalLiquibase(
+            @Qualifier("canonicalDataSource") DataSource canonicalDataSource
+    ) {
+        var liquibase = new SpringLiquibase();
+        liquibase.setDataSource(canonicalDataSource);
+        return liquibase;
+    }
 }

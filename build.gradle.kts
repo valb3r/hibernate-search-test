@@ -18,6 +18,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
     implementation("org.springframework.boot:spring-boot-starter-web")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
+    implementation("org.liquibase:liquibase-core")
 
     implementation("org.hibernate.search:hibernate-search-mapper-orm:6.1.5.Final")
     implementation("org.hibernate.search:hibernate-search-backend-elasticsearch:6.1.5.Final")
