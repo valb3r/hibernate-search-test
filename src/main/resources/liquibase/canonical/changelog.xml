@@ -6,4 +6,5 @@
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
     <include file="migration/0001-initial-schema.xml" relativeToChangelogFile="true"/>
+    <include file="migration/0002-add-msg-and-trx.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

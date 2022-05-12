@@ -1,0 +1,25 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet author="vbeex" id="202205120951">
+        <insert tableName="account">
+            <column name="id" value="1"/>
+            <column name="name" value="Max Musterman account"/>
+            <column name="iban" value="DE48500105171218283926"/>
+        </insert>
+        <insert tableName="account">
+            <column name="id" value="2"/>
+            <column name="name" value="Jane Doe account"/>
+            <column name="iban" value="GB02BARC20040188648158"/>
+        </insert>
+        <insert tableName="account">
+            <column name="id" value="3"/>
+            <column name="name" value="Anton Brueckner account"/>
+            <column name="iban" value="DE38500105176175221659"/>
+        </insert>
+        <insert tableName="account">
+            <column name="id" value="4"/>
+            <column name="name" value="John Doe account"/>
+            <column name="iban" value="GB93BARC20040195357465"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,151 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet author="vbeex" id="202205120955">
+        <insert tableName="message">
+            <column name="id" value="1"/>
+            <column name="message_id" value="5a15b05b-d061-425d-a467-ff206801e4db"/>
+            <column name="message_channel" value="REST input"/>
+            <column name="sequence_number" value="35"/>
+        </insert>
+        <insert tableName="message">
+            <column name="id" value="2"/>
+            <column name="message_id" value="90dbaa1d-3508-48fb-b1f5-718de8083c32"/>
+            <column name="message_channel" value="SFTP input"/>
+            <column name="sequence_number" value="75"/>
+        </insert>
+        <insert tableName="message">
+            <column name="id" value="3"/>
+            <column name="message_id" value="473f42a2-5dcd-4cb5-ae84-5cc42f18f232"/>
+            <column name="message_channel" value="SNS input"/>
+            <column name="sequence_number" value="120"/>
+        </insert>
+        <insert tableName="message">
+            <column name="id" value="4"/>
+            <column name="message_id" value="8d3423b2-43f6-4f87-89f8-d9b830e35f45"/>
+            <column name="message_channel" value="SFTP input"/>
+            <column name="sequence_number" value="215"/>
+        </insert>
+    </changeSet>
+
+    <!-- Message 1 -->
+    <changeSet author="vbeex" id="202205121002">
+        <insert tableName="transaction">
+            <column name="id" value="1"/>
+            <column name="amount" value="110"/>
+            <column name="account_iban_from" value="DE48500105171218283926"/>
+            <column name="account_iban_to" value="GB02BARC20040188648158"/>
+            <column name="date" value="2021-11-01T01:08:00"/>
+            <column name="message_id" value="1"/>
+        </insert>
+        <insert tableName="transaction">
+            <column name="id" value="2"/>
+            <column name="amount" value="120"/>
+            <column name="account_iban_from" value="DE38500105176175221659"/>
+            <column name="account_iban_to" value="GB93BARC20040195357465"/>
+            <column name="date" value="2020-01-19T01:01:00"/>
+            <column name="message_id" value="1"/>
+        </insert>
+        <insert tableName="transaction">
+            <column name="id" value="3"/>
+            <column name="amount" value="200"/>
+            <column name="account_iban_from" value="GB02BARC20040188648158"/>
+            <column name="account_iban_to" value="GB02BARC20040188648158"/>
+            <column name="date" value="2020-01-18T01:01:00"/>
+            <column name="message_id" value="1"/>
+        </insert>
+        <insert tableName="transaction">
+            <column name="id" value="4"/>
+            <column name="amount" value="100"/>
+            <column name="account_iban_from" value="DE38500105176175221659"/>
+            <column name="account_iban_to" value="GB93BARC20040195357465"/>
+            <column name="date" value="2021-03-01T01:01:00"/>
+            <column name="message_id" value="1"/>
+        </insert>
+
+        <!-- Message 2 -->
+        <insert tableName="transaction">
+            <column name="id" value="5"/>
+            <column name="amount" value="300"/>
+            <column name="account_iban_from" value="GB93BARC20040195357465"/>
+            <column name="account_iban_to" value="DE38500105176175221659"/>
+            <column name="date" value="2021-03-01T02:01:00"/>
+            <column name="message_id" value="1"/>
+        </insert>
+        <insert tableName="transaction">
+            <column name="id" value="6"/>
+            <column name="amount" value="200"/>
+            <column name="account_iban_from" value="GB02BARC20040188648158"/>
+            <column name="account_iban_to" value="DE48500105171218283926"/>
+            <column name="date" value="2020-05-01T06:01:00"/>
+            <column name="message_id" value="1"/>
+        </insert>
+        <insert tableName="transaction">
+            <column name="id" value="7"/>
+            <column name="amount" value="400"/>
+            <column name="account_iban_from" value="DE48500105171218283926"/>
+            <column name="account_iban_to" value="GB02BARC20040188648158"/>
+            <column name="date" value="2021-02-01T08:01:00"/>
+            <column name="message_id" value="1"/>
+        </insert>
+
+        <!-- Message 3 -->
+        <insert tableName="transaction">
+            <column name="id" value="8"/>
+            <column name="amount" value="455"/>
+            <column name="account_iban_from" value="DE38500105176175221659"/>
+            <column name="account_iban_to" value="GB93BARC20040195357465"/>
+            <column name="date" value="2020-01-15T01:01:00"/>
+            <column name="message_id" value="1"/>
+        </insert>
+        <insert tableName="transaction">
+            <column name="id" value="9"/>
+            <column name="amount" value="878"/>
+            <column name="account_iban_from" value="GB02BARC20040188648158"/>
+            <column name="account_iban_to" value="DE48500105171218283926"/>
+            <column name="date" value="2021-02-01T06:01:00"/>
+            <column name="message_id" value="1"/>
+        </insert>
+        <insert tableName="transaction">
+            <column name="id" value="10"/>
+            <column name="amount" value="123"/>
+            <column name="account_iban_from" value="DE38500105176175221659"/>
+            <column name="account_iban_to" value="GB02BARC20040188648158"/>
+            <column name="date" value="2020-01-01T01:01:00"/>
+            <column name="message_id" value="1"/>
+        </insert>
+        <insert tableName="transaction">
+            <column name="id" value="11"/>
+            <column name="amount" value="415"/>
+            <column name="account_iban_from" value="GB02BARC20040188648158"/>
+            <column name="account_iban_to" value="GB93BARC20040195357465"/>
+            <column name="date" value="2021-03-01T08:01:00"/>
+            <column name="message_id" value="1"/>
+        </insert>
+
+        <!-- Message 4 -->
+        <insert tableName="transaction">
+            <column name="id" value="12"/>
+            <column name="amount" value="566"/>
+            <column name="account_iban_from" value="GB93BARC20040195357465"/>
+            <column name="account_iban_to" value="GB02BARC20040188648158"/>
+            <column name="date" value="2021-08-01T11:01:00"/>
+            <column name="message_id" value="1"/>
+        </insert>
+        <insert tableName="transaction">
+            <column name="id" value="13"/>
+            <column name="amount" value="321"/>
+            <column name="account_iban_from" value="GB93BARC20040195357465"/>
+            <column name="account_iban_to" value="DE48500105171218283926"/>
+            <column name="date" value="2020-01-01T01:01:00"/>
+            <column name="message_id" value="1"/>
+        </insert>
+        <insert tableName="transaction">
+            <column name="id" value="14"/>
+            <column name="amount" value="813"/>
+            <column name="account_iban_from" value="GB02BARC20040188648158"/>
+            <column name="account_iban_to" value="DE38500105176175221659"/>
+            <column name="date" value="2021-02-01T02:03:00"/>
+            <column name="message_id" value="1"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
