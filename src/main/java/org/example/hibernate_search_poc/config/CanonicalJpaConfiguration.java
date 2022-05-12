@@ -1,4 +1,4 @@
-package org.example.domain.config;
+package org.example.hibernate_search_poc.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
@@ -18,7 +18,7 @@ import java.util.Objects;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        basePackages = "org.example.domain",
+        basePackages = "org.example.domain.canonical",
         entityManagerFactoryRef = "canonicalEntityManagerFactory",
         transactionManagerRef = "canonicalTransactionManager"
 )
@@ -34,7 +34,7 @@ public class CanonicalJpaConfiguration {
         return builder
                 .dataSource(dataSource)
                 .properties(jpaProperties.getProperties())
-                .packages("org.example.domain")
+                .packages("org.example.domain.canonical")
                 .build();
     }
 

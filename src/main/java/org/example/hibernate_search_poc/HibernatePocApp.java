@@ -1,4 +1,4 @@
-package org.example.domain;
+package org.example.hibernate_search_poc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

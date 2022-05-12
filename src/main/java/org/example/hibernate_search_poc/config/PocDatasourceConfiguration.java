@@ -1,4 +1,4 @@
-package org.example.domain.config;
+package org.example.hibernate_search_poc.config;
 
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
