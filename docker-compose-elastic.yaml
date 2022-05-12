@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.16.3
+    environment:
+      - xpack.ml.enabled=false
+      - bootstrap.memory_lock=false
+      - discovery.type=single-node
+      - ELASTIC_PASSWORD=elastic-12345678
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - 9200:9200
+    deploy:
+      resources:
+        limits:
+          memory: 800M

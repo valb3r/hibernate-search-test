@@ -23,10 +23,11 @@ services:
         soft: 65536
         hard: 65536
     environment:
-      - bootstrap.memory_lock=true
+      - xpack.ml.enabled=false
+      - bootstrap.memory_lock=false
       - discovery.type=single-node
       - ELASTIC_PASSWORD=elastic-12345678
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m -XX:UseSSE=2"
     ports:
       - 9200:9200
     deploy:

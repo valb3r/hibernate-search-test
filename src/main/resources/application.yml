@@ -9,6 +9,9 @@ datasource:
         hibernate:
           ddl-auto: validate
           dialect: org.hibernate.dialect.SQLServer2012Dialect
+          globally_quoted_identifiers: true
+          implicit_naming_strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+          physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
       open-in-view: false
       show-sql: true
     liquibase:
@@ -25,8 +28,26 @@ datasource:
         hibernate:
           ddl-auto: validate
           dialect: org.hibernate.dialect.SQLServer2012Dialect
+          globally_quoted_identifiers: true
+          implicit_naming_strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+          physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
       open-in-view: false
       show-sql: true
     liquibase:
       change-log: classpath:/liquibase/master/changelog.xml
       enabled: true
+
+spring:
+  jpa:
+    properties:
+      hibernate:
+        search:
+          backend:
+            uris: http://localhost:9200
+            username: elastic
+            password: elastic-12345678
+          default:
+            indexmanager: elasticsearch
+            elasticsearch:
+              index_schema_management_strategy: drop-and-create
+              required_index_status: yellow
