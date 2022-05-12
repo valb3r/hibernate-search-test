@@ -1,0 +1,53 @@
+version: '3.8'
+
+#  /**
+#  * M1 Silicon - use Colima. 'colima start --arch amd'
+#  * See <a href="https://github.com/microsoft/mssql-docker/issues/668">https://github.com/microsoft/mssql-docker/issues/668</a>
+#  * Configure Testcontainers to use colima:
+#  * <a href="https://www.rockyourcode.com/testcontainers-with-colima/">https://www.rockyourcode.com/testcontainers-with-colima/</a>
+#  * Or add env vars:
+#  * TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
+#  * DOCKER_HOST=unix://${HOME}/.colima/docker.sock
+#
+# colima start --cpu 2 --memory 4 --arch amd
+#  */
+services:
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:6.8.22
+    environment:
+      - bootstrap.memory_lock=true
+      - discovery.type=single-node
+      - ELASTIC_PASSWORD=elastic-12345678
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ports:
+      - 9200:9200
+    deploy:
+      resources:
+        limits:
+          memory: 800M
+
+  canonical-db:
+    image: mcr.microsoft.com/mssql/server:2017-CU24-ubuntu-16.04
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=CANON-05844853-b0f0-4be9-b7b4-d793c2bcd600
+      - MSSQL_DB=processing
+    ports:
+      - "1433:1433"
+    deploy:
+      resources:
+        limits:
+          memory: 1200M
+
+  master-db:
+    image: mcr.microsoft.com/mssql/server:2017-CU24-ubuntu-16.04
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=MASTER-05844853-b0f0-4be9-b7b4-d793c2bcd600
+      - MSSQL_DB=master
+    ports:
+      - "1434:1434"
+    deploy:
+      resources:
+        limits:
+          memory: 1200M
