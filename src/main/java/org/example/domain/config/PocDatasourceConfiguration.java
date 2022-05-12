@@ -1,6 +1,7 @@
 package org.example.domain.config;
 
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
+import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,22 +19,35 @@ public class PocDatasourceConfiguration {
     }
 
     @Bean
+    @ConfigurationProperties("datasource.master.jpa")
+    public JpaProperties masterJpaProperties() {
+        return new JpaProperties();
+    }
+
+    @Bean
+    public DataSource masterDataSource(DataSourceProperties masterDataSourceProperties) {
+        return masterDataSourceProperties
+                .initializeDataSourceBuilder()
+                .build();
+    }
+
+    @Bean
     @ConfigurationProperties("datasource.canonical")
     public DataSourceProperties canonicalDataSourceProperties() {
         return new DataSourceProperties();
     }
 
     @Bean
-    public DataSource masterDataSource() {
-        return masterDataSourceProperties()
-                .initializeDataSourceBuilder()
-                .build();
+    @Primary
+    @ConfigurationProperties("datasource.canonical.jpa")
+    public JpaProperties canonicalJpaProperties() {
+        return new JpaProperties();
     }
 
     @Bean
     @Primary
-    public DataSource canonicalDataSource() {
-        return canonicalDataSourceProperties()
+    public DataSource canonicalDataSource(DataSourceProperties canonicalDataSourceProperties) {
+        return canonicalDataSourceProperties
                 .initializeDataSourceBuilder()
                 .build();
     }

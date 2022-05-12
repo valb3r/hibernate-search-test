@@ -1,6 +1,7 @@
 package org.example.domain.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,10 +25,13 @@ public class MasterJpaConfiguration {
 
     @Bean
     public LocalContainerEntityManagerFactoryBean masterEntityManagerFactory(
-            @Qualifier("masterDataSource") DataSource dataSource, EntityManagerFactoryBuilder builder
+            @Qualifier("masterDataSource") DataSource dataSource,
+            @Qualifier("masterJpaProperties") JpaProperties jpaProperties,
+            EntityManagerFactoryBuilder builder
     ) {
         return builder
                 .dataSource(dataSource)
+                .properties(jpaProperties.getProperties())
                 .packages("org.example.domain")
                 .build();
     }

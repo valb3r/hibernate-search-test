@@ -10,10 +10,18 @@ version: '3.8'
 #  * DOCKER_HOST=unix://${HOME}/.colima/docker.sock
 #
 # colima start --cpu 2 --memory 4 --arch amd
+# docker-compose --compatibility up -d
 #  */
 services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:6.8.22
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
     environment:
       - bootstrap.memory_lock=true
       - discovery.type=single-node
@@ -31,7 +39,6 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=CANON-05844853-b0f0-4be9-b7b4-d793c2bcd600
-      - MSSQL_DB=processing
     ports:
       - "1433:1433"
     deploy:
@@ -44,9 +51,8 @@ services:
     environment:
       - ACCEPT_EULA=Y
       - SA_PASSWORD=MASTER-05844853-b0f0-4be9-b7b4-d793c2bcd600
-      - MSSQL_DB=master
     ports:
-      - "1434:1434"
+      - "1434:1433"
     deploy:
       resources:
         limits:

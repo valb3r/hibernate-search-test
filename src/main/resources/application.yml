@@ -1,11 +1,19 @@
 datasource:
   canonical:
-    url: jdbc:sqlserver://localhost:1433;databaseName=canonical;trustServerCertificate=true
+    url: jdbc:sqlserver://localhost:1433;databaseName=master;trustServerCertificate=true
     username: sa
-    password: 123
+    password: CANON-05844853-b0f0-4be9-b7b4-d793c2bcd600
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    jpa:
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.SQLServer2012Dialect
   master:
     url: jdbc:sqlserver://localhost:1434;databaseName=master;trustServerCertificate=true
     username: sa
-    password: 456
+    password: MASTER-05844853-b0f0-4be9-b7b4-d793c2bcd600
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    jpa:
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.SQLServer2012Dialect
