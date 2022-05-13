@@ -2,6 +2,7 @@ package org.example.domain.master;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 
 import javax.persistence.Entity;
@@ -18,7 +19,9 @@ public class Account {
     @GeneratedValue
     private Long id;
 
+    @FullTextField
     private String name;
 
+    @FullTextField
     private String iban;
 }

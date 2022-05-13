@@ -1,10 +1,12 @@
 package org.example.domain.canonical;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
+import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,5 +38,6 @@ public class Transaction {
     private LocalDateTime date;
 
     @ManyToOne
+    @JsonIgnore
     private Message message;
 }

@@ -23,6 +23,7 @@ dependencies {
     implementation("org.hibernate.search:hibernate-search-mapper-orm:6.1.5.Final")
     implementation("org.hibernate.search:hibernate-search-backend-elasticsearch:6.1.5.Final")
     implementation("com.microsoft.sqlserver:mssql-jdbc:10.2.0.jre17")
+    implementation("org.springdoc:springdoc-openapi-ui:1.6.8")
 
     compileOnly("org.projectlombok:lombok:1.18.24")
     annotationProcessor("org.projectlombok:lombok:1.18.24")
