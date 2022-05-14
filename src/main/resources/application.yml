@@ -38,6 +38,10 @@ datasource:
       enabled: true
 
 spring:
+  mvc:
+    hidden-method:
+      filter:
+        enabled: true
   jpa:
     properties:
       hibernate:

@@ -1,11 +1,14 @@
 package org.example.domain.canonical;
 
+import com.github.javafaker.Faker;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.domain.master.Account;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
+import org.iban4j.Iban;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +17,7 @@ import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ThreadLocalRandom;
 
 @Getter
 @Setter
@@ -37,4 +41,12 @@ public class Message {
     @IndexedEmbedded
     @OneToMany(mappedBy = "message")
     private List<Transaction> transactions = new ArrayList<>();
+
+    public static Message newRandom() {
+        var msg = new Message();
+        msg.setMessageId(UUID.randomUUID());
+        msg.setMessageChannel(new Faker().hacker().abbreviation() + " " + new Faker().internet().domainWord());
+        msg.setSequenceNumber(ThreadLocalRandom.current().nextLong(0, 100000));
+        return msg;
+    }
 }

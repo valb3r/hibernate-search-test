@@ -20,5 +20,6 @@
             <column name="message_id" type="bigint"/>
         </createTable>
         <addForeignKeyConstraint baseColumnNames="message_id" baseTableName="transaction" constraintName="transaction_to_message_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="message"/>
+        <createSequence cycle="false" incrementBy="1" maxValue="9223372036854775807" minValue="-9223372036854775808" sequenceName="hibernate_sequence" startValue="1000"/>
     </changeSet>
 </databaseChangeLog>

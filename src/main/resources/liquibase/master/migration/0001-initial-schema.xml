@@ -8,5 +8,6 @@
             <column name="name" type="nvarchar(50)"/>
             <column name="iban" type="nvarchar(50)"/>
         </createTable>
+        <createSequence cycle="false" incrementBy="1" maxValue="9223372036854775807" minValue="-9223372036854775808" sequenceName="hibernate_sequence" startValue="1000"/>
     </changeSet>
 </databaseChangeLog>

@@ -18,7 +18,7 @@ import java.util.Objects;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        basePackages = "org.example.domain.canonical",
+        basePackages = "org.example.domain.repository.canonical",
         entityManagerFactoryRef = "canonicalEntityManagerFactory",
         transactionManagerRef = "canonicalTransactionManager"
 )
