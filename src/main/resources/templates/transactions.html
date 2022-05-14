@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Transactions</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container my-2">
+    <h3>Message</h3>
+    <table style="width: 80%; border: solid"
+           class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Message ID</th>
+            <th>Message Channel</th>
+            <th>Sequence number</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${message.id}"></td>
+            <td th:text="${message.messageId}"></td>
+            <td th:text="${message.messageChannel}"></td>
+            <td th:text="${message.sequenceNumber}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <h3>Transactions</h3>
+    <table style="width: 80%; border: solid"
+           class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Amount</th>
+            <th>IBAN from</th>
+            <th>IBAN to</th>
+            <th>Date</th>
+            <th>Message</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="i : ${message.transactions}">
+            <form action="#" method="post">
+                <td>
+                    <input type="hidden" th:value="${i.id}" name="id"/>
+                    <span th:if="${i.id != null}" th:text="${i.id}"></span>
+                    <span th:if="${i.id == null}">New item</span>
+                </td>
+                <td><input type="text" th:value="${i.amount}" name="amount" /></td>
+                <td><input type="text" th:value="${i.accountIbanFrom}" name="accountIbanFrom" /></td>
+                <td><input type="text" th:value="${i.accountIbanTo}" name="accountIbanTo" /></td>
+                <td><input type="text" th:value="${#temporals.format(i.date, 'yyyy-MM-dd''T''hh:mm:ss')}" name="date" /></td>
+                <td><input type="text" th:value="${i.freeText}" name="freeText" /></td>
+                <td>
+                    <button type="submit" class="btn btn-primary" name="update" th:formaction="@{/messages/{messageId}/transactions(messageId=${message.id})}">Update</button>
+                    <button th:if="${i.id != null}" type="submit" class="btn alert-danger" name="delete" th:formaction="@{/messages/{messageId}/transactions/{id}/delete(messageId=${message.id},id=${i.id})}">Delete</button>
+                </td>
+            </form>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+

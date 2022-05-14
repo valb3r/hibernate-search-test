@@ -10,6 +10,7 @@ import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.IndexedEmbedded;
 import org.iban4j.Iban;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -39,8 +40,17 @@ public class Message {
     private Long sequenceNumber;
 
     @IndexedEmbedded
-    @OneToMany(mappedBy = "message")
-    private List<Transaction> transactions = new ArrayList<>();
+    @OneToMany(mappedBy = "message", cascade = CascadeType.ALL)
+    private List<Transaction> transactions;
+
+    public void addTransaction(Transaction transaction) {
+        if (null == transactions) {
+            transactions = new ArrayList<>();
+        }
+
+        transaction.setMessage(this);
+        transactions.add(transaction);
+    }
 
     public static Message newRandom() {
         var msg = new Message();

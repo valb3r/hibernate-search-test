@@ -1,26 +1,21 @@
 package org.example.hibernate_search_poc.controller;
 
-import liquibase.pro.packaged.A;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.example.domain.canonical.Message;
+import org.example.domain.canonical.Transaction;
 import org.example.domain.master.Account;
 import org.example.hibernate_search_poc.service.AccountsService;
 import org.example.hibernate_search_poc.service.MessagesService;
+import org.example.hibernate_search_poc.service.TransactionsService;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 @Controller
@@ -29,6 +24,7 @@ public class ViewController {
 
     private final AccountsService accounts;
     private final MessagesService messages;
+    private final TransactionsService transactions;
 
     @GetMapping("/")
     public String viewHomePage(Model model) {
@@ -69,5 +65,29 @@ public class ViewController {
     public String deleteMessage(@PathVariable long id) {
         messages.delete(id);
         return "redirect:/";
+    }
+
+    @GetMapping ("/messages/{messageId}/transactions")
+    public String viewTransactions(@PathVariable long messageId, Model model) {
+        var message = messages.messageAndTransactionsById(messageId);
+        message.getTransactions().add(Transaction.newRandom());
+        model.addAttribute("message", message);
+        return "transactions";
+    }
+
+    @PostMapping("/messages/{messageId}/transactions")
+    public String saveTransaction(@PathVariable long messageId, @ModelAttribute("transaction") Transaction transaction, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "redirect:/transactions?q=" + bindingResult.getAllErrors().stream().map(DefaultMessageSourceResolvable::getCode).collect(Collectors.joining());
+        }
+
+        transactions.save(messageId, transaction);
+        return "redirect:/messages/" + messageId + "/transactions";
+    }
+
+    @PostMapping("/messages/{messageId}/transactions/{id}/delete")
+    public String deleteTransaction(@PathVariable long messageId, @PathVariable long id) {
+        transactions.delete(id);
+        return "redirect:/messages/" + messageId + "/transactions";
     }
 }

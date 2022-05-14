@@ -17,6 +17,7 @@
             <column name="account_iban_from" type="nvarchar(50)"/>
             <column name="account_iban_to" type="nvarchar(50)"/>
             <column name="date" type="nvarchar(50)"/>
+            <column name="free_text" type="nvarchar(255)"/>
             <column name="message_id" type="bigint"/>
         </createTable>
         <addForeignKeyConstraint baseColumnNames="message_id" baseTableName="transaction" constraintName="transaction_to_message_fk" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="message"/>

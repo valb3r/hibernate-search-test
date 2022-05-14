@@ -36,6 +36,7 @@
             <column name="account_iban_to" value="GB02BARC20040188648158"/>
             <column name="date" value="2021-11-01 01:08:00"/>
             <column name="message_id" value="1"/>
+            <column name="free_text" value="Buy water 1L"/>
         </insert>
         <insert tableName="transaction">
             <column name="id" value="2"/>
@@ -44,6 +45,7 @@
             <column name="account_iban_to" value="GB93BARC20040195357465"/>
             <column name="date" value="2020-01-19 01:01:00"/>
             <column name="message_id" value="1"/>
+            <column name="free_text" value="Netflix payment"/>
         </insert>
         <insert tableName="transaction">
             <column name="id" value="3"/>
@@ -52,6 +54,7 @@
             <column name="account_iban_to" value="GB02BARC20040188648158"/>
             <column name="date" value="2020-01-18 01:01:00"/>
             <column name="message_id" value="1"/>
+            <column name="free_text" value="Electricity bill payment"/>
         </insert>
         <insert tableName="transaction">
             <column name="id" value="4"/>
@@ -60,6 +63,7 @@
             <column name="account_iban_to" value="GB93BARC20040195357465"/>
             <column name="date" value="2021-03-01 01:01:00"/>
             <column name="message_id" value="1"/>
+            <column name="free_text" value="Netflix payment"/>
         </insert>
 
         <!-- Message 2 -->
@@ -70,6 +74,7 @@
             <column name="account_iban_to" value="DE38500105176175221659"/>
             <column name="date" value="2021-03-01 02:01:00"/>
             <column name="message_id" value="2"/>
+            <column name="free_text" value="Electricity bill payment"/>
         </insert>
         <insert tableName="transaction">
             <column name="id" value="6"/>
@@ -78,6 +83,7 @@
             <column name="account_iban_to" value="DE48500105171218283926"/>
             <column name="date" value="2020-05-01 06:01:00"/>
             <column name="message_id" value="2"/>
+            <column name="free_text" value="Buying TV"/>
         </insert>
         <insert tableName="transaction">
             <column name="id" value="7"/>
@@ -86,6 +92,7 @@
             <column name="account_iban_to" value="GB02BARC20040188648158"/>
             <column name="date" value="2021-02-01 08:01:00"/>
             <column name="message_id" value="2"/>
+            <column name="free_text" value="Payment for repairs"/>
         </insert>
 
         <!-- Message 3 -->
@@ -96,6 +103,7 @@
             <column name="account_iban_to" value="GB93BARC20040195357465"/>
             <column name="date" value="2020-01-15 01:01:00"/>
             <column name="message_id" value="3"/>
+            <column name="free_text" value="Electricity bill payment"/>
         </insert>
         <insert tableName="transaction">
             <column name="id" value="9"/>
@@ -104,6 +112,7 @@
             <column name="account_iban_to" value="DE48500105171218283926"/>
             <column name="date" value="2021-02-01 06:01:00"/>
             <column name="message_id" value="3"/>
+            <column name="free_text" value="Electricity bill payment"/>
         </insert>
         <insert tableName="transaction">
             <column name="id" value="10"/>
@@ -112,6 +121,7 @@
             <column name="account_iban_to" value="GB02BARC20040188648158"/>
             <column name="date" value="2020-01-01 01:01:00"/>
             <column name="message_id" value="3"/>
+            <column name="free_text" value="Paying for plumbing works/repairs"/>
         </insert>
         <insert tableName="transaction">
             <column name="id" value="11"/>
@@ -120,6 +130,7 @@
             <column name="account_iban_to" value="GB93BARC20040195357465"/>
             <column name="date" value="2021-03-01 08:01:00"/>
             <column name="message_id" value="3"/>
+            <column name="free_text" value="Buying groceries"/>
         </insert>
 
         <!-- Message 4 -->
@@ -130,6 +141,7 @@
             <column name="account_iban_to" value="GB02BARC20040188648158"/>
             <column name="date" value="2021-08-01 11:01:00"/>
             <column name="message_id" value="4"/>
+            <column name="free_text" value="Electricity bill payment"/>
         </insert>
         <insert tableName="transaction">
             <column name="id" value="13"/>
@@ -138,6 +150,7 @@
             <column name="account_iban_to" value="DE48500105171218283926"/>
             <column name="date" value="2020-01-01 01:01:00"/>
             <column name="message_id" value="4"/>
+            <column name="free_text" value="Netflix payment"/>
         </insert>
         <insert tableName="transaction">
             <column name="id" value="14"/>
@@ -146,6 +159,7 @@
             <column name="account_iban_to" value="DE38500105176175221659"/>
             <column name="date" value="2021-02-01 02:03:00"/>
             <column name="message_id" value="4"/>
+            <column name="free_text" value="Buying soap"/>
         </insert>
     </changeSet>
 </databaseChangeLog>
