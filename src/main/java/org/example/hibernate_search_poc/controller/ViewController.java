@@ -77,12 +77,13 @@ public class ViewController {
 
     @PostMapping("/messages/{messageId}/transactions")
     public String saveTransaction(@PathVariable long messageId, @ModelAttribute("transaction") Transaction transaction, BindingResult bindingResult) {
+        String redirectToTransactions = "redirect:/messages/" + messageId + "/transactions";
         if (bindingResult.hasErrors()) {
-            return "redirect:/transactions?q=" + bindingResult.getAllErrors().stream().map(DefaultMessageSourceResolvable::getCode).collect(Collectors.joining());
+            return redirectToTransactions + "?q=" + bindingResult.getAllErrors().stream().map(DefaultMessageSourceResolvable::getCode).collect(Collectors.joining());
         }
 
         transactions.save(messageId, transaction);
-        return "redirect:/messages/" + messageId + "/transactions";
+        return redirectToTransactions;
     }
 
     @PostMapping("/messages/{messageId}/transactions/{id}/delete")
