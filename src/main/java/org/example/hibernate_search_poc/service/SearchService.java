@@ -3,6 +3,7 @@ package org.example.hibernate_search_poc.service;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.logging.log4j.util.Strings;
 import org.example.domain.canonical.Transaction;
 import org.hibernate.search.engine.search.query.SearchResult;
 import org.hibernate.search.mapper.orm.Search;
@@ -32,12 +33,14 @@ public class SearchService {
     @Transactional(transactionManager = "canonicalTransactionManager")
     @GetMapping("/transactions")
     public List<QuerySearchResult> findData(String query) {
+        var actualQuery = Strings.isBlank(query) ? "*" : query;
+
         SearchSession searchSession = Search.session(canonicalManager);
 
         SearchResult<Transaction> result = searchSession.search(Transaction.class)
                 .where(f -> f.simpleQueryString()
                         .field("accountIbanFrom")
-                        .matching(query))
+                        .matching(actualQuery))
                 .fetch(20);
 
         return result.hits().stream().map(it -> new QuerySearchResult(it)).toList();
