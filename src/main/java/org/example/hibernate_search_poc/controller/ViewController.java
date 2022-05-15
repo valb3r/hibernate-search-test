@@ -6,6 +6,7 @@ import org.example.domain.canonical.Transaction;
 import org.example.domain.master.Account;
 import org.example.hibernate_search_poc.service.AccountsService;
 import org.example.hibernate_search_poc.service.MessagesService;
+import org.example.hibernate_search_poc.service.SearchService;
 import org.example.hibernate_search_poc.service.TransactionsService;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.stereotype.Controller;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.stream.Collectors;
 
@@ -25,15 +27,19 @@ public class ViewController {
     private final AccountsService accounts;
     private final MessagesService messages;
     private final TransactionsService transactions;
+    private final SearchService searchService;
 
     @GetMapping("/")
-    public String viewHomePage(Model model) {
+    public String viewHomePage(@RequestParam(value = "query", required = false) String query, Model model) {
         var allAccounts = accounts.allAccounts();
         allAccounts.add(Account.newRandom());
         model.addAttribute("accounts", allAccounts);
         var allMessages = messages.allMessages();
         allMessages.add(Message.newRandom());
         model.addAttribute("messages", allMessages);
+
+        model.addAttribute("query", query);
+        model.addAttribute("searchResults", searchService.findData(query));
         return "index";
     }
 
