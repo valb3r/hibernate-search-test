@@ -23,6 +23,8 @@
         <thead>
         <tr>
             <th>ID</th>
+            <th>Account from name</th>
+            <th>Account to name</th>
             <th>Amount</th>
             <th>IBAN from</th>
             <th>IBAN to</th>
@@ -33,6 +35,8 @@
         <tbody>
         <tr th:each="i : ${searchResults}">
             <td th:text="${i.transaction.id}"></td>
+            <td th:text="${i.getAccountFromName()}"></td>
+            <td th:text="${i.getAccountToName()}"></td>
             <td th:text="${i.transaction.amount}"></td>
             <td th:text="${i.transaction.accountIbanFrom}"></td>
             <td th:text="${i.transaction.accountIbanTo}"></td>

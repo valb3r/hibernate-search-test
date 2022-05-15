@@ -15,6 +15,10 @@ public class AccountsService {
 
     private final AccountsRepository accounts;
 
+    public Account findByIban(String iban) {
+        return accounts.findByIban(iban);
+    }
+
     public List<Account> allAccounts() {
         return accounts.findAll();
     }
