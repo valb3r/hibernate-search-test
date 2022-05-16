@@ -7,6 +7,8 @@ import lombok.Setter;
 import org.example.domain.master.Account;
 import org.example.hibernate_search_poc.config.SpringApplicationContext;
 import org.example.hibernate_search_poc.service.AccountsService;
+import org.hibernate.search.engine.backend.types.ObjectStructure;
+import org.hibernate.search.engine.backend.types.Projectable;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.GenericField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
@@ -35,19 +37,19 @@ public class Transaction {
     @GeneratedValue
     private Long id;
 
-    @GenericField
+    @GenericField(projectable = Projectable.YES)
     private BigDecimal amount;
 
-    @FullTextField
+    @FullTextField(projectable = Projectable.YES)
     private String accountIbanFrom;
 
-    @FullTextField
+    @FullTextField(projectable = Projectable.YES)
     private String accountIbanTo;
 
-    @GenericField
+    @GenericField(projectable = Projectable.YES)
     private LocalDateTime date;
 
-    @FullTextField
+    @FullTextField(projectable = Projectable.YES)
     private String freeText;
 
     @ManyToOne

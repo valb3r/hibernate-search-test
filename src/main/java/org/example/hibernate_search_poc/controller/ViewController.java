@@ -43,6 +43,13 @@ public class ViewController {
         return "index";
     }
 
+    @GetMapping("/search-elastic-only")
+    public String viewHomeElasticOnlySearchPage(@RequestParam(value = "query", required = false) String query, Model model) {
+        model.addAttribute("query", query);
+        model.addAttribute("searchResults", searchService.findDataElasticOnly(query));
+        return "search-elastic-only";
+    }
+
     @PostMapping("/accounts")
     public String saveAccount(@ModelAttribute("account") Account account, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
