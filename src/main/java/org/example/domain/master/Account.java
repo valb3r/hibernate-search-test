@@ -8,12 +8,14 @@ import org.example.hibernate_search_poc.service.TransactionsService;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.FullTextField;
 import org.hibernate.search.mapper.pojo.mapping.definition.annotation.Indexed;
 import org.iban4j.Iban;
+import org.springframework.context.ApplicationEventPublisher;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.PostUpdate;
+import javax.persistence.PreUpdate;
 
 @Getter
 @Setter
@@ -43,7 +45,7 @@ public class Account {
 
         @PostUpdate
         void onPostUpdate(Account account) {
-            SpringApplicationContext.getBean(TransactionsService.class).updateAccount(account);
+            SpringApplicationContext.getBean(ApplicationEventPublisher.class).publishEvent(account);
         }
     }
 }

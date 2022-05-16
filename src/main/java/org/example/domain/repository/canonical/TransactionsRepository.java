@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface TransactionsRepository extends JpaRepository<Transaction, Long> {
 
-    @Query("SELECT t FROM Transaction t WHERE t.accountIbanFrom = ?1 OR t.accountIbanTo = ?1")
+    @Query("FROM Transaction t WHERE t.accountIbanFrom = ?1 OR t.accountIbanTo = ?1")
     List<Transaction> findByIban(String iban);
 }
